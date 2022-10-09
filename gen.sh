@@ -25,3 +25,21 @@ echo
 echo
 echo
 openssl verify -CAfile ca-cert.pem server-cert.pem
+
+# 5. Generate client's private key and certificate signing request(CSR).
+# Remove -nodes to encrypt private key
+openssl req -newkey rsa:4096 -nodes -days 365 -keyout client-key.pem -out client-req.pem -subj "/C=US/ST=Florida/L=Orlando/O=Household/OU=Cleaning/CN=Cooking/emailAddress=pcbookclient@gmail.com"
+
+# 6. Use CA's private key to sign client's CSR and get back signed certificate.
+openssl x509 -req -in client-req.pem -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -out client-cert.pem -extfile server-ext.cnf
+
+echo
+echo "Client's certificate"
+echo
+openssl x509 -in client-cert.pem -noout -text
+
+# 7. Verify Certificate
+echo
+echo
+echo
+openssl verify -CAfile ca-cert.pem client-cert.pem
