@@ -1,1 +1,1 @@
-subjectAltName=DNS:*.pcbook.com,DNS:*.pcbooks.org,IP:0.0.0.0
+subjectAltName=DNS:*.pcbook.com,DNS:*.pcbooks.org,DNS:localhost,IP:0.0.0.0
