@@ -1,0 +1,22 @@
+
+set timeout -1
+
+spawn ./gen.sh
+
+
+expect "Enter PEM pass phrase:"
+send -- $SECRET
+
+expect "Verifying - Enter PEM pass phrase:"
+send -- $SECRET
+
+expect "Enter PEM pass phrase:"
+send -- $SECRET
+
+expect "Verifying - Enter PEM pass phrase:"
+send -- $SECRET
+
+expect "Enter pass phrase for ca-key.pem"
+send -- $SECRET
+
+expect eof
